@@ -1,0 +1,94 @@
+<div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-dark navbar-without-dd-arrow navbar-shadow"
+    role="navigation" data-menu="menu-wrapper">
+    <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
+        <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+
+            <li class="nav-item"><a class="nav-link" href="/">
+                    <i class="fa-solid fa-house"></i><span>Anasayfa</span></a>
+            </li>
+
+            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-bed-pulse"></i><span>Hastalar</span></a>
+            </li>
+
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Nurse"))
+            {
+                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-user-nurse"></i><span>Hemşire</span></a>
+                    <ul class="dropdown-menu">
+                        <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><i
+                                class="fa-solid fa-eye"></i><span data-i18n="Genel">Genel</span></a>
+                        </li>
+                        <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><i
+                                class="fa-regular fa-clock"></i><span data-i18n="Aylık Saatler">Çalışma
+                                    Saatleri</span></a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Sales"))
+            {
+                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-user-pen"></i><span>Satış</span></a>
+                    <ul class="dropdown-menu">
+                        <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><i
+                                class="fa-solid fa-eye"></i><span data-i18n="Genel">Genel</span></a>
+                        </li>
+                        <li data-menu=""><a class="dropdown-item" asp-controller="Sales" asp-action="PriceCalculator"><i
+                                class="fa-solid fa-calculator"></i><span data-i18n="Fiyat Hesaplama">Fiyat
+                                    Hesaplama</span></a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Translator"))
+            {
+                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-user-group"></i><span>Tercüman</span></a>
+                </li>
+            }
+
+            <li class="nav-item"><a class="nav-link" href="#"><i
+                        class="fa-solid fa-calendar-days"></i><span>Takvim</span></a>
+            </li>
+
+            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-house-medical"></i><span>Klinik</span></a>
+                <ul class="dropdown-menu">
+                    <li data-menu=""><a class="dropdown-item" href="#" data-toggle=""><i
+                                class="fa-solid fa-eye"></i><span data-i18n="Genel">Genel</span></a>
+                    </li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a
+                            class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"><i
+                                class="fa-solid fa-people-roof"></i><span data-i18n="Yonetim">Yönetim</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Clinic" asp-action="Surgeries"><span
+                                        data-i18n="Ameliyat Ekle">Ameliyatlar</span></a>
+                                </li>
+                                <li data-menu=""><a class="dropdown-item" asp-controller="Clinic" asp-action="Pricing"
+                                    data-toggle=""><span data-i18n="Fiyatlandırma">Fiyatlandırma</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </li>
+
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+            {
+                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-gears"></i><span>Ayarlar</span></a>
+                </li>
+            }
+
+            <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                    data-toggle="dropdown"><i class="fa-solid fa-compass-drafting"></i><span>Diğer</span></a>
+            </li>
+
+        </ul>
+    </div>
+</div>

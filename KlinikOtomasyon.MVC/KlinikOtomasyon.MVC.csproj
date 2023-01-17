@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\KlinikOtomasyon.Shared\KlinikOtomasyon.Shared.csproj" />
+    <ProjectReference Include="..\KlinikOtomasyon.Entities\KlinikOtomasyon.Entities.csproj" />
+    <ProjectReference Include="..\KlinikOtomasyon.Data\KlinikOtomasyon.Data.csproj" />
+    <ProjectReference Include="..\KlinikOtomasyon.Services\KlinikOtomasyon.Services.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

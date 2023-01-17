@@ -1,0 +1,127 @@
+@model SalesPriceCalculatorResultModel
+@{
+    ViewData["Title"] = "Fiyat Hesaplayıcı";
+}
+@section VendorCSS{
+<link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/forms/selects/selectize.css">
+<link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/forms/selects/selectize.default.css">
+}
+@section PageCSS{
+<link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/forms/selectize/selectize.css">
+}
+@section PageVendorJS{
+<script src="~/app-assets/vendors/js/forms/select/selectize.min.js"></script>
+}
+@section PageJS{
+<script src="~/app-assets/js/scripts/forms/select/form-selectize.js"></script>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Fiyat Hesaplayıcı</h2>
+            <hr>
+            <form method="post">
+                <div class="form-group">
+
+                    <div class="col-12">
+                        <h5>Talep Edilen Ameliyatlar</h5>
+                        <select class="selectize-multiple" multiple id="requestedSurgeries"
+                            onchange="SeconderyOperationsSelectFiller(this)" asp-for="RequestedSurgeriesIds" asp-items="ViewBag.SurgeryList">
+                            <option value="" disabled>Ameliyatları Seçiniz</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="d-inline-block custom-control custom-checkbox mr-1">
+                            <input type="checkbox" class="custom-control-input bg-dark" asp-for="hasTransfer" checked>
+                            <label class="custom-control-label" asp-for="hasTransfer">Transfer</label>
+                        </div>
+                        <div class="d-inline-block custom-control custom-checkbox mr-1">
+                            <input type="checkbox" class="custom-control-input bg-dark" asp-for="hasHotel" checked>
+                            <label class="custom-control-label" asp-for="hasHotel">Otel</label>
+                        </div>
+                        <div class="d-inline-block custom-control custom-checkbox mr-1">
+                            <input type="checkbox" class="custom-control-input bg-purple" name="isSeconderCheck"
+                                id="isSeconderCheck">
+                            <label class="custom-control-label" for="isSeconderCheck">Sekonder Op.</label>
+                        </div>
+                        <div class="d-inline-block custom-control custom-checkbox mr-1">
+                            <input type="checkbox" class="custom-control-input bg-warning" asp-for="FriendshipDiscount">
+                            <label class="custom-control-label" asp-for="FriendshipDiscount">Arkadaşlık İndirimi</label>
+                        </div>
+                    </div>
+
+                    <hr id="seconderOperationsDivider" class="d-md-none">
+
+                    <div class="col-12 mt-1" id="seconderOperations">
+                        <h6 class="d-inline-block mr-2">Sekonder Operasyonlar</h6>
+
+                        <select class="custom-select" multiple asp-for="SeconderOperations">
+                            <option disabled>Sekonder Operasyonu Seçiniz</option>
+                        </select>
+                    </div>
+
+                    <hr id="hotelPersonNumberDivider" class="d-md-none">
+
+                    <div class="col-auto mt-1" id="hotelPersonNumberArea">
+                        <h6 class="d-inline-block mr-2">Otelde kaç kişi konaklayacak?</h6>
+                        <div class="form-group d-inline-block">
+                            <select class="custom-select" asp-for="HotelPersonNumber">
+                                <option disabled>Lütfen Kişi Sayısı Seçin</option>
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center text-md-left">
+                        <button type="submit" class="btn btn-primary buttonAnimation mt-2" data-animation="rubberBand">
+                            <i class="la la-check-circle"></i> Hesapla
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section CustomJS{
+<script>
+    $("body").on('click', "#hasHotel", function () {
+        if (document.getElementById("hasHotel").checked == false) {
+            document.getElementById('hotelPersonNumberArea').classList.add("d-none")
+            document.getElementById('hotelPersonNumberDivider').classList.add("d-none")
+        } else {
+            document.getElementById('hotelPersonNumberArea').classList.remove("d-none")
+            document.getElementById('hotelPersonNumberDivider').classList.remove("d-none")
+        }
+    });
+
+    if (document.getElementById("isSeconderCheck").checked == false) {
+        document.getElementById('seconderOperations').classList.add("d-none")
+        document.getElementById('seconderOperationsDivider').classList.add("d-none")
+    } else {
+        document.getElementById('seconderOperations').classList.remove("d-none")
+        document.getElementById('seconderOperationsDivider').classList.remove("d-none")
+    }
+
+    $("body").on('click', "#isSeconderCheck", function () {
+        if (document.getElementById("isSeconderCheck").checked == true) {
+            document.getElementById('seconderOperations').classList.remove("d-none")
+            document.getElementById('seconderOperationsDivider').classList.remove("d-none")
+        } else {
+            document.getElementById('seconderOperations').classList.add("d-none")
+            document.getElementById('seconderOperationsDivider').classList.add("d-none")
+        }
+    });
+
+    function SeconderyOperationsSelectFiller(element) {
+        var opts = element.options;
+        document.getElementById("SeconderOperations").add(new Option(opts[opts.length - 1].text, opts[opts.length - 1].value));
+    }
+
+</script>
+}

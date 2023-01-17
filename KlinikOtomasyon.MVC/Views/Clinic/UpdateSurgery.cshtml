@@ -1,0 +1,112 @@
+@model ClinicUpdateSurgeryResultModel
+@{
+    ViewData["Title"] = "Ameliyat Güncelle";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h2 class="text-center">Ameliyat Güncelle</h2>
+            <hr>
+            <form asp-controller="Clinic" asp-action="UpdateSurgery" method="post">
+                <div class="form-body">
+
+                    <div class="form-group">
+                        <input asp-for="UpdateSurgeryDto.Id" type="text" name="Id" class="form-control" hidden>
+
+                        <label asp-for="UpdateSurgeryDto.Name">İsim</label>
+                        <input asp-for="UpdateSurgeryDto.Name" type="text" name="Name" class="form-control"
+                            placeholder="İsim">
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UpdateSurgeryDto.SurgeryPrice">Ameliyat Fiyatı</label>
+                                <input asp-for="UpdateSurgeryDto.SurgeryPrice" type="text" class="form-control"
+                                    name="SurgeryPrice" placeholder="Fiyat">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UpdateSurgeryDto.SurgeryPriceCurrency">Ameliyat Fiyatı Para
+                                    Birimi</label>
+                                <select class="custom-select" asp-for="UpdateSurgeryDto.SurgeryPriceCurrency"
+                                    name="SurgeryPriceCurrency">
+                                    <option disabled>Bir Para Birimi Seçiniz</option>
+                                    <option value="Euro" selected>Euro</option>
+                                    <option value="Pound">İngiliz Sterlini</option>
+                                    <option value="USD">Amerika Doları</option>
+                                    <option value="AUD">Avustralya Doları</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UpdateSurgeryDto.HospitalPrice">Hastane Ücreti</label>
+                                <input asp-for="UpdateSurgeryDto.HospitalPrice" name="HospitalPrice" type="text"
+                                    class="form-control" placeholder="Hastane Ücreti">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UpdateSurgeryDto.HospitalPriceCurrency">Hastane Ücreti Para
+                                    Birimi</label>
+                                <select class="custom-select" asp-for="UpdateSurgeryDto.HospitalPriceCurrency"
+                                    name="HospitalPriceCurrency">
+                                    <option disabled>Bir Para Birimi Seçiniz</option>
+                                    <option value="Euro" selected>Euro</option>
+                                    <option value="Pound">İngiliz Sterlini</option>
+                                    <option value="USD">Amerika Doları</option>
+                                    <option value="AUD">Avustralya Doları</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UpdateSurgeryDto.HospitalDay">Hastane Günü</label>
+                                <input asp-for="UpdateSurgeryDto.HospitalDay" name="HospitalDay" type="text"
+                                    class="form-control" placeholder="Hastane Günü">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UpdateSurgeryDto.HotelDay">Otel Günü</label>
+                                <input asp-for="UpdateSurgeryDto.HotelDay" name="HotelDay" type="text"
+                                    class="form-control" placeholder="Otel Günü">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UpdateSurgeryDto.Note">Not</label>
+                        <textarea asp-for="UpdateSurgeryDto.Note" name="Note" type="text" class="form-control"
+                            placeholder="Otel Günü" style="height: 80px"></textarea>
+                    </div>
+
+                    <div class="form-actions center">
+                        <a href="javascript:window.close()" class="btn btn-danger mr-1">
+                            <i class="ft-x"></i> İptal
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="la la-check-square-o"></i> Kaydet
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

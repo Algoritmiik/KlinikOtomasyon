@@ -1,0 +1,54 @@
+#LoginBody {
+    transition: background-image 2s linear;
+    background-image: url(/img/login/bg-login.jpeg);
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.userAccountForm {
+    border-top: 2px solid crimson;
+    border-right: 2px solid darkblue;
+    border-bottom: 2px solid cornflowerblue;
+    border-left: 2px solid darkorange;
+    animation: colorChanger 4s infinite linear;
+}
+
+@keyframes colorChanger {
+    0% {
+        border-top-color: crimson;
+        border-right-color: darkblue;
+        border-bottom-color: cornflowerblue;
+        border-left-color: darkorange;
+    }
+
+    25% {
+        border-top-color: darkorange;
+        border-right-color: crimson;
+        border-bottom-color: darkblue;
+        border-left-color: cornflowerblue;
+    }
+
+    50% {
+        border-top-color: cornflowerblue;
+        border-right-color: darkorange;
+        border-bottom-color: crimson;
+        border-left-color: darkblue;
+    }
+
+    75% {
+        border-top-color: darkblue;
+        border-right-color: cornflowerblue;
+        border-bottom-color: darkorange;
+        border-left-color: crimson;
+    }
+
+    100% {
+        border-top-color: crimson;
+        border-right-color: darkblue;
+        border-bottom-color: cornflowerblue;
+        border-left-color: darkorange;
+    }
+}

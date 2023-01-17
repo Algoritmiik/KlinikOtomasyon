@@ -1,0 +1,250 @@
+@model ClinicSurgeriesResultModel
+@{
+    ViewData["Title"] = "Ameliyatlar";
+    int counter = 1;
+}
+
+@section VendorCSS {
+<link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/tables/datatable/datatables.min.css">
+}
+@section VendorJS {
+<script src="~/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+}
+@section PageJS {
+<script src="~/app-assets/js/scripts/tables/datatables/datatable-styling.js"></script>
+}
+
+<!-- BEGIN: Table -->
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Ameliyatlar</h2>
+            <hr>
+            <table
+                class="table table-striped table-hover table-bordered table-responsive-md table-sm bootstrap-3 dataTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">İsim</th>
+                        <th scope="col">Op. Ücret</th>
+                        <th scope="col">Hst. Ücret</th>
+                        <th scope="col">Hst. Gece</th>
+                        <th scope="col">Otel Gece</th>
+                        <th scope="col">Aktiflik</th>
+                        <th scope="col">Not</th>
+                        <th scope="col">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var surgery in Model.Surgeries)
+                    {
+                        <tr>
+                            <td scope="row"><b>@counter</b></td>
+                            <td style="white-space: nowrap; max-width: 100px; overflow: hidden; text-overflow: ellipsis;">
+                                @if (!String.IsNullOrEmpty(surgery.Name))
+                                {
+                                    <span data-toggle="tooltip" data-placement="left" data-original-title="@surgery.Name">
+                                        <i class="fa fa-question-circle"></i>
+                                    </span>
+                                    @surgery.Name
+                                }</td>
+                            <td scope="row">@surgery.SurgeryPrice @surgery.SurgeryPriceCurrency</td>
+                            <td scope="row">@surgery.HospitalPrice @surgery.HospitalPriceCurrency</td>
+                            <td scope="row">@surgery.HospitalDay</td>
+                            <td scope="row">@surgery.HotelDay</td>
+                            <td class="text-center">
+                                @if (surgery.IsActive == false)
+                                {
+                                    <a class="btn btn-sm text-danger" data-toggle="modal"
+                                        data-target="#updateActiveStatusModal_@surgery.Id"><i class="fa-solid fa-times fa-2xl"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-sm text-info" data-toggle="modal"
+                                        data-target="#updateActiveStatusModal_@surgery.Id"><i class="fa-solid fa-check fa-2xl"></i></a>
+                                }
+                            </td>
+                            <td style="white-space: nowrap; max-width: 40px; overflow: hidden; text-overflow: ellipsis;">
+                                @if (!String.IsNullOrEmpty(surgery.Note))
+                                {
+                                    <span data-toggle="tooltip" data-placement="left" data-original-title="@surgery.Note">
+                                        <i class="fa fa-question-circle"></i>
+                                    </span>
+                                    @surgery.Note
+                                }
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-purple dropdown-toggle btn-sm buttonAnimation"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                data-animation="jello">
+                                    <i class="fa-solid fa-hammer"></i> İşlemler
+                                </button>
+                                <div class="dropdown-menu arrow text-center">
+                                    <a class="btn btn-danger text-white" data-toggle="modal"
+                                    data-target="#deletePriceModal_@surgery.Id">Sil</a>
+                                    <a class="btn btn-adn text-white" asp-controller="Clinic" asp-action="UpdateSurgery" asp-route-id="@surgery.Id" target="_blank">Güncelle</a>
+                                </div>
+                            </td>
+                        </tr>
+                        counter++;
+
+                        <!-- BEGIN: Update Active Status Modal -->
+                        <div class="modal animated fadeInDown text-left" id="updateActiveStatusModal_@surgery.Id" tabindex="-1"
+                        role="dialog" aria-labelledby="updateActiveStatusModal_@surgery.Id" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-adn">
+                                        <h4 class="modal-title text-white"><b>Aktiflik Durumu Değiştirme Onay</b>
+                                        </h4>
+                                        <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5><b>@surgery.Name</b> kaydının aktiflik durumunu değiştirmek istediğinize emin misiniz?</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger"
+                                        data-dismiss="modal">İptal</button>
+                                        <a asp-controller="Clinic" asp-action="ChangeSurgeryActiveStatus"
+                                            asp-route-id="@surgery.Id" class="btn btn-primary">Onay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Update Active Status Modal -->
+
+                        <!-- BEGIN: Delete Surgery Modal -->
+                        <div class="modal animated fadeInDown text-left" id="deletePriceModal_@surgery.Id" tabindex="-1"
+                        role="dialog" aria-labelledby="deletePriceModal_@surgery.Id" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                        <h4 class="modal-title text-white"><b>Ameliyat Silme Onay</b>
+                                        </h4>
+                                        <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5><b>@surgery.Name</b> kaydını
+                                            silmek istediğinize emin misiniz?</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger"
+                                        data-dismiss="modal">İptal</button>
+                                        <a asp-controller="Clinic" asp-action="DeleteSurgery" asp-route-id="@surgery.Id"
+                                            class="btn btn-primary">Onay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Delete Surgery Modal -->
+                    }
+                </tbody>
+            </table>
+            <div class="col-12 text-center">
+                <a href="#" class="btn btn-primary buttonAnimation" data-toggle="modal" data-target="#addSurgeryModal"
+                    data-animation="tada">Yeni Bir Ameliyat Ekle</a>
+            </div>
+
+            <!-- BEGIN: Add Surgery Modal -->
+            <div class="modal animated fadeInDown text-left" id="addSurgeryModal" tabindex="-1" role="dialog"
+                aria-labelledby="addSurgeryModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h4 class="modal-title text-white" id="myDidPaidModal"><b>Ameliyat Ekleme Formu</b></h4>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-controller="Clinic" asp-action="AddSurgery" method="post">
+
+                                <div class="form-body">
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.Name">İsim</label>
+                                        <input asp-for="AddSurgery.Name" type="text" class="form-control" value=""
+                                            placeholder="İsim">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.SurgeryPrice">Fiyat</label>
+                                        <input asp-for="AddSurgery.SurgeryPrice" type="text" class="form-control"
+                                            value="" placeholder="Fiyat">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.SurgeryPriceCurrency">Ameliyat Fiyatı Para Birimi</label>
+                                        <select class="custom-select" asp-for="AddSurgery.SurgeryPriceCurrency">
+                                            <option disabled>Bir Para Birimi Seçiniz</option>
+                                            <option value="Euro" selected>Euro</option>
+                                            <option value="Pound">İngiliz Sterlini</option>
+                                            <option value="USD">Amerika Doları</option>
+                                            <option value="AUD">Avustralya Doları</option> 
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.HospitalDay">Hastane Günü</label>
+                                        <input asp-for="AddSurgery.HospitalDay" type="text" class="form-control"
+                                            value="" placeholder="Hastane Günü">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.HospitalPrice">Hastane Ücreti</label>
+                                        <input asp-for="AddSurgery.HospitalPrice" type="text" class="form-control"
+                                            value="" placeholder="Hastane Ücreti">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.HospitalPriceCurrency">Hastane Ücreti Para Birimi</label>
+                                        <select class="custom-select" asp-for="AddSurgery.HospitalPriceCurrency">
+                                            <option disabled>Bir Para Birimi Seçiniz</option>
+                                            <option value="Euro" selected>Euro</option>
+                                            <option value="Pound">İngiliz Sterlini</option>
+                                            <option value="USD">Amerika Doları</option>
+                                            <option value="AUD">Avustralya Doları</option> 
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.HotelDay">Otel Günü</label>
+                                        <input asp-for="AddSurgery.HotelDay" type="text" class="form-control"
+                                            value="" placeholder="Otel Günü">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AddSurgery.IsExtra">Bu Ameliyat Ekstra Mı?</label>
+                                        <select class="custom-select" asp-for="AddSurgery.IsExtra">
+                                            <option value="false" selected>Hayır</option>
+                                            <option value="true">Evet</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-actions center">
+                                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
+                                        <i class="ft-x"></i> İptal
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="la la-check-square-o"></i> Kaydet
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Add Surgery Modal -->
+
+        </div>
+    </div>
+</div>
+<!-- END: Table -->

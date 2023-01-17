@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlinikOtomasyon.MVC", "KlinikOtomasyon.MVC\KlinikOtomasyon.MVC.csproj", "{7A06303D-FFD4-47C5-9043-08EF3A9FDCE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlinikOtomasyon.Shared", "KlinikOtomasyon.Shared\KlinikOtomasyon.Shared.csproj", "{F1E36DD4-6D72-4D28-A480-12D3B976C5F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlinikOtomasyon.Entities", "KlinikOtomasyon.Entities\KlinikOtomasyon.Entities.csproj", "{BD2C944F-F6EF-4F51-8B24-11B2C6B7C15F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlinikOtomasyon.Data", "KlinikOtomasyon.Data\KlinikOtomasyon.Data.csproj", "{6C1199F5-2BD0-469D-85E1-9D45F2963DC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlinikOtomasyon.Services", "KlinikOtomasyon.Services\KlinikOtomasyon.Services.csproj", "{FC24512D-2C31-49EC-A0F9-8A712119F78F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A06303D-FFD4-47C5-9043-08EF3A9FDCE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A06303D-FFD4-47C5-9043-08EF3A9FDCE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A06303D-FFD4-47C5-9043-08EF3A9FDCE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A06303D-FFD4-47C5-9043-08EF3A9FDCE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E36DD4-6D72-4D28-A480-12D3B976C5F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E36DD4-6D72-4D28-A480-12D3B976C5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E36DD4-6D72-4D28-A480-12D3B976C5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E36DD4-6D72-4D28-A480-12D3B976C5F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD2C944F-F6EF-4F51-8B24-11B2C6B7C15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD2C944F-F6EF-4F51-8B24-11B2C6B7C15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD2C944F-F6EF-4F51-8B24-11B2C6B7C15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD2C944F-F6EF-4F51-8B24-11B2C6B7C15F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1199F5-2BD0-469D-85E1-9D45F2963DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1199F5-2BD0-469D-85E1-9D45F2963DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1199F5-2BD0-469D-85E1-9D45F2963DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1199F5-2BD0-469D-85E1-9D45F2963DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC24512D-2C31-49EC-A0F9-8A712119F78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC24512D-2C31-49EC-A0F9-8A712119F78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC24512D-2C31-49EC-A0F9-8A712119F78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC24512D-2C31-49EC-A0F9-8A712119F78F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\KlinikOtomasyon.Shared\KlinikOtomasyon.Shared.csproj"/>
+    <ProjectReference Include="..\KlinikOtomasyon.Entities\KlinikOtomasyon.Entities.csproj"/>
+    <ProjectReference Include="..\KlinikOtomasyon.Data\KlinikOtomasyon.Data.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0"/>
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>
